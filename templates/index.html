@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generator url</title>
+</head>
+<body>
+    <div class=page>
+        <h1 style="text-align: center">Short Url Generator</h1>
+
+        <form  style="margin-left: auto; margin-right: auto" action="{{ url_for('index') }}" method=post>
+            <br/>
+            <h3  style="text-align: center">Source url:</h3>
+            <p align="middle" >
+                <input type=text name=url placeholder="Enter Your long url" value="{{response.long_url}}"
+                       style="width: 50%" >
+            </p>
+
+            <p  align="middle" >
+                <input style="margin:auto; width:120px" type=submit value=Generate>
+            </p>
+            <br/>
+
+        </form>
+
+        {% if response %}
+            <h3 style="text-align: center"><a href="{{ url_for('count_references', id_url=response.id) }}">{{ response.short_url }}</a></h3>
+            <h3 style="text-align:center" >Reference Count: {{ response.count }} </h3>
+        {% else %}
+            <h3></h3>
+        {% endif %}
+
+    </div>
+</body>
+</html>
